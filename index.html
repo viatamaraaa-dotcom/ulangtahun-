@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Ren Sayang 🤍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  font-family:'Segoe UI',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  color:white;
+}
+.card{
+  background:rgba(255,255,255,0.25);
+  padding:28px;
+  border-radius:22px;
+  text-align:center;
+  width:90%;
+  max-width:420px;
+  box-shadow:0 20px 40px rgba(0,0,0,.3);
+}
+h1{font-size:2em}
+p{font-size:1.1em;min-height:120px;line-height:1.6}
+button{
+  margin-top:20px;
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#ff4d6d;
+  font-weight:bold;
+}
+.balloon{
+  position:absolute;
+  bottom:-120px;
+  width:50px;
+  height:70px;
+  border-radius:50%;
+  animation:float 8s linear infinite;
+}
+.balloon::after{
+  content:'';
+  position:absolute;
+  width:2px;
+  height:40px;
+  background:white;
+  left:50%;
+  top:70px;
+}
+@keyframes float{
+  from{transform:translateY(0)}
+  to{transform:translateY(-130vh)}
+}
+</style>
+</head>
+<body>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<div class="card">
+  <h1>Hai Ren Sayang 🎂</h1>
+  <p id="text">Ada yang ulang tahun hari ini 😏</p>
+  <button onclick="next()">Klik aku 🤍</button>
+</div>
+
+<script>
+const music=document.getElementById("music");
+const textEl=document.getElementById("text");
+
+const messages=[
+"Selamat ulang tahun sayangku, cintaku, duniaku 😗🥰🫶🌎",
+"Semoga kamu selalu sehat, baik mental maupun fisiknya 🤍",
+"Dilancarkan rezekinya dan dipermudah semua urusannya 🤲",
+"Terima kasih sudah hadir dan memberiku cinta seindah ini 💗",
+"Ren sayang, hidup tidak selalu mudah, tapi kamu tidak pernah sendiri",
+"Aku percaya pada setiap proses dan langkah yang kamu jalani",
+"Jika kamu lelah, ingat ada aku yang selalu mendoakanmu",
+"Selamat ulang tahun Ren 🤍 Aku bangga padamu"
+];
+
+let i=0,typing=false;
+
+function typeText(t,cb){
+  let x=0; textEl.innerText=""; typing=true;
+  const s=setInterval(()=>{
+    textEl.innerText+=t.charAt(x++);
+    if(x>=t.length){clearInterval(s);typing=false;if(cb)cb();}
+  },35);
+}
+
+function next(){
+  if(music.paused)music.play();
+  if(typing)return;
+  if(i<messages.length){typeText(messages[i++]);}
+  else{typeText("🤍 Aku selalu di sini 🤍",spawn);}
+}
+
+function spawn(){
+  const c=["#ff4d6d","#ffd166","#06d6a0","#4cc9f0","#c77dff"];
+  for(let j=0;j<30;j++){
+    const b=document.createElement("div");
+    b.className="balloon";
+    b.style.left=Math.random()*100+"vw";
+    b.style.background=c[Math.floor(Math.random()*c.length)];
+    document.body.appendChild(b);
+  }
+}
+</script>
+</body>
+</html>
