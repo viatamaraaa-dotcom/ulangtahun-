@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Ren Sayang 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+.card {
+  background: rgba(255,255,255,0.25);
+  padding: 30px;
+  border-radius: 22px;
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: fadeIn 1.2s ease;
+  z-index: 10;
+}
+
+h1 {
+  font-size: 2.2em;
+}
+
+p {
+  font-size: 1.15em;
+  min-height: 80px;
+}
+
+button {
+  margin-top: 20px;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #ff4d6d;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* balon */
+.balloon {
+  position: absolute;
+  bottom: -120px;
+  width: 50px;
+  height: 70px;
+  border-radius: 50%;
+  animation: float 9s linear infinite;
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background: white;
+  left: 50%;
+  top: 70px;
+}
+
+@keyframes float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-120vh); }
+}
+</style>
+</head>
+<body>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<div class="card">
+  <h1>Hai Ren Sayang 👀</h1>
+  <p id="text">Ada yang ulang tahun hari ini yaa 😏🎂</p>
+  <button onclick="next()">Klik aku 🎁</button>
+</div>
+
+<script>
+const music = document.getElementById("music");
+
+const messages = [
+  "Selamat ulang tahun ya, Ren Sayang selamat ulang tahun sayangku cintaku duniaku😗🥰🫶🌎”,
+  "Semoga semua doa baik kamu dikabulkan ✨",
+  “semoga dngan bertambahnya umur kmu bisa menjadi pribadi yg lebih baik lagi, sehat slalu mental dan fisik nya,dilancarkan rezekinya,dipermudah segala urusannya🫶🏻😘”,
+  “smoga tujuan kita berdua cepat tercapai amin dan trimakasih telah memberiku cinta yg belum pernah aku temui sebelum nya🥰”,     
+  “tetap menjadi laki laki yg tidak pernah berubah dari awal hingga akhir😘”,
+  “Semangat dalam berprosesnya gantengku, ingat menyerah bukan lh solusi ketika km merasa lelah tetap menjadi orang baik ya meskipun orang orang blum tentu memandang kita baik💗🫂”,
+  “aku tetap di sini mendo'akan dan slalu supprt usaha km ingat slalu kata kata aku yaa jangan melakukan hal aneh meskipun aku jauh dan tidak mengetahui itu,sekali lagi hppy birtday syngkuuu🫶💗🥳🎂",
+  "Terima kasih udah hadir dan bikin hidup aku lebih berwarna 💕",
+  "Aku harap aku masih bisa nemenin kamu lama ya 🥹",
+  "Intinya satu… aku sayang kamu 😳❤️"
+];
+
+let i = 0;
+
+function next() {
+  if (music.paused) music.play();
+
+  if (i < messages.length) {
+    document.getElementById("text").innerText = messages[i];
+    i++;
+  } else {
+    document.getElementById("text").innerText = "🎉🎈💖";
+    spawnBalloons();
+  }
+}
+
+function spawnBalloons() {
+  const colors = ["#ff4d6d","#ffd166","#06d6a0","#4cc9f0","#c77dff"];
+  for (let j = 0; j < 25; j++) {
+    const b = document.createElement("div");
+    b.className = "balloon";
+    b.style.left = Math.random() * 100 + "vw";
+    b.style.background = colors[Math.floor(Math.random() * colors.length)];
+    b.style.animationDuration = (6 + Math.random() * 4) + "s";
+    document.body.appendChild(b);
+  }
+}
+</script>
+
+</body>
+</html>
